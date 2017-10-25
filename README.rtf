@@ -1,0 +1,26 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww18240\viewh10220\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs24 \cf0 Main functions:\
+boosting_allfunctions.R:
+\b0  file contains all of the main boosting, boosting with hierarchical information functions and subroutines. The functions that are called by the main code are: \
+	- boost: which can be called with the original switch option (not using hierarchical information if set to TRUE) or without it. It requires the hierarchy tree which is saved as final_leaves, and direct_children, the number of internal nodes in the tree, the motif and regulator input matrices and the output labels matrix. It also requires the rules for the simulated data cases to compute the accuracy of the network recovery and compare the model rules to the true ones. The simulated datasets that are generated require this code and assume a hierarchy where all the cell types are at the leaves of the tree.\
+	- boost_complete: is called when every node in the hierarchy tree is a cell type, instead of just the leaves of the tree. This is the case for the real data set. \
+\
+
+\b Codes to generate data and call the boosting solution :
+\b0  \
+
+\b 5rule
+\b0 : The code generates the data for the 5 rule GRN network simulation explained in the HiBoost paper. It calls the hierarchical boosting function and evaluates the accuracy of the network recovery.\
+\
+
+\b 16rule: 
+\b0 The code generates the data for the 16 rule GRN network simulation explained in the HiBoost paper. It calls the hierarchical boosting function and evaluates the accuracy of the network recovery.\
+\
+
+\b randgen: 
+\b0 The code generates the data for the network-based simulation. It assigns specific rules that are activating or repressing for all cell types in the hierarchy, generates the labels for the gene expression at random and finally samples relevant rules to have been responsible for all the transitions of gene expression between cell types. It then calls the complete hierarchical boosting function to train and evaluate the obtained model. }
