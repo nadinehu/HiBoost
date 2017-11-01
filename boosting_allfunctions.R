@@ -35,7 +35,7 @@ allequal<-function(v1,v2){
   return(eq)
 }
 
-get_candidate<-function(w,idxpredtmp,idxtrup,idxtrdown,wtmp,x1,x2,nx1,nx2,epsilon){  
+get_candidate<-function(w,idxpredtmp,idxtrup,idxtrdown,wtmp,x1,x2,nx1,nx2){  
   
   wtmp = w*idxpredtmp; # ws of training examples that pass parent node
   wpos = wtmp*idxtrup; # ws of +ve training examples that pass parent node - dim of the labels matrix 
@@ -205,7 +205,7 @@ boost=function(final_leaves, direct_children, intnodes, motif_mat, tf_mat, label
             keep_leaves=final_leaves[child,(final_leaves[child,]>0)] # get its leaves in subtree of that child.
           idxpredtempS[,-keep_leaves]=0; # reducenodes that pass for new loss computation
         }
-        fit=get_candidate(w,idxpredtempS,idxtrup,idxtrdown,wtmp,motif_mat,tf_mat,nx1,nx2,eps); #optimal motif-reg pair 
+        fit=get_candidate(w,idxpredtempS,idxtrup,idxtrdown,wtmp,motif_mat,tf_mat,nx1,nx2); #optimal motif-reg pair 
         loss[k]=fit$lsbest # optimal loss  for best candidate for node in hierarchy
         motif[k]=fit$mbest; # index of best motif
         reg[k]=fit$pbest; # index of best regulator
@@ -488,7 +488,7 @@ boost_complete=function(final_leaves, direct_children, intnodes, motif_mat, tf_m
 
         
         #cat("\n in get candidtate")
-        fit=get_candidate(w,idxpredtempS,idxtrup,idxtrdown,wtmp,motif_mat,tf_mat,nx1,nx2,eps); #optimal motif-reg pair 
+        fit=get_candidate(w,idxpredtempS,idxtrup,idxtrdown,wtmp,motif_mat,tf_mat,nx1,nx2); #optimal motif-reg pair 
         #cat("\n out of get candidate")
         loss[k]=fit$lsbest # optimal loss for best candidate for node in hierarchy
         motif[k]=fit$mbest; # index of best motif
